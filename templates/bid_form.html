@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Create Bid</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">Bitskins</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Bid Form <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shopping">Shopping</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
+            <br />
+            <div class="row">
+                <div class="col-4">
+                    <form action="/" method="POST">
+                        <div class="form-group">
+                            <label for="skin">What is the name of the skin?</label>
+                            <input class="form-control" type="text" id="skin" name="skin_name" />
+
+                            <label for="spend">What is the most you'll spend for this skin?</label>
+                            <input class="form-control" type="number" id="spend" name="max_price" step="0.01" />
+
+                            <label for="wear">What is the highest wear decimal you will accept?</label>
+                            <input class="form-control" type="number" id="wear" name="max_wear" min="0.01" step="0.01" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>StatTrak?</label>
+                            <div class="form-check">
+                                <input id="st1" class="form-check-input" type="radio" name="stattrak" value="y" />
+                                <label for="st1" class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="st2" class="form-check-input" type="radio" name="stattrak" value="n" />
+                                <label for="st2" class="form-check-label">No</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="st3" class="form-check-input" type="radio" name="stattrak" value="eh" checked />
+                                <label for="st3" class="form-check-label">Doesn't Matter</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Do you want the skin to have stickers?</label>
+                            <div class="form-check">
+                                <input id="stick1" class="form-check-input" type="radio" name="stickers" value="y" />
+                                <label for="stick1" class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="stick2" class="form-check-input" type="radio" name="stickers" value="n" />
+                                <label for="stick2" class="form-check-label">No</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="stick3" class="form-check-input" type="radio" name="stickers" value="eh" checked />
+                                <label for="stick3" class="form-check-label">Doesn't Matter</label>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label>Search for souvenir skins?</label>
+                            <div class="form-check">
+                                <input id="so1" class="form-check-input" type="radio" name="souv" value="y" />
+                                <label for="so1" class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="so2" class="form-check-input" type="radio" name="souv" value="n" />
+                                <label for="so2" class="form-check-label">No</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="so3" class="form-check-input" type="radio" name="souv" value="eh" checked />
+                                <label for="so3" class="form-check-label">Doesn't Matter</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Include trade-delayed items?</label>
+                            <div class="form-check">
+                                <input id="td1" class="form-check-input" type="radio" name="td" value="y" checked />
+                                <label for="td1" class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="td2" class="form-check-input" type="radio" name="td" value="n" />
+                                <label for="td2" class="form-check-label">No</label>
+                            </div>
+                        </div>
+                        
+                        <input type="submit" name="sub" value="Create Bid" />
+                    
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        {% if bt %}
+                            <h4>Current Bids</h4><br />
+                            {{ bt|safe }}
+                            <br />
+                            <input type="submit" name="sub" value="Shop Bids" />
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        {% if bid_blocks %}
+                        <pre><code>
+                            {% for bid_block in bid_blocks %}
+                                {{ bid_block }}  
+                            {% endfor %}
+                        </code></pre>
+                        {% endif %}
+                    </div>
+                </div></form>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
